@@ -30,4 +30,6 @@ class Command(BaseCommand):
                 lastName = input('What is your last name?: ')
                 username = input('What is your username?: ')
                 email = input('What is your email?: ')
-                my_user = User()
+                my_user = User(first_name=name, last_name=lastName, username=username, email=email)
+                my_user.save()
+                print ('Users: ', User.objects.all().count())
