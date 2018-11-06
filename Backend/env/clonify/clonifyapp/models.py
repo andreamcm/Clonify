@@ -40,17 +40,20 @@ class Artist(models.Model):
 	img = models.CharField(max_length=900)
 
 
-# Playlist model
-class Playlist(models.Model):
+# Playlists model
+class Playlists(models.Model):
 	name = models.CharField(max_length=50)
 	user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
 
-# Song playlist model
-class SongPlaylist(models.Model):
+# Playlist model
+class Playlist(models.Model):
     playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
     datetime = models.DateTimeField(auto_now=True)
 
 
 # Last song played (optional)
+class LastSong(models.Model):
+	user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+	song = models.ForeignKey(Song, on_delete=models.CASCADE)
