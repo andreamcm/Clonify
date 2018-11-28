@@ -26,18 +26,18 @@ class Genre(models.Model):
 	name = models.CharField(max_length=50)
 
 
-# Songs model
-class Song(models.Model):
-	title = models.CharField(max_length=100)
-	artistaId = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-	albumId = models.ForeignKey(Album, null=True, on_delete=models.CASCADE)
-	genreId = models.ForeignKey(Genre, null=True, on_delete=models.CASCADE)
-
-
 # Artist model
 class Artist(models.Model):
 	name = models.CharField(max_length=50)
 	img = models.CharField(max_length=900)
+
+
+# Songs model
+class Song(models.Model):
+	title = models.CharField(max_length=100)
+	artistaId = models.ForeignKey(Artist, null=True, on_delete=models.CASCADE)
+	albumId = models.ForeignKey(Album, null=True, on_delete=models.CASCADE)
+	genreId = models.ForeignKey(Genre, null=True, on_delete=models.CASCADE)
 
 
 # Playlists model
@@ -48,7 +48,7 @@ class Playlists(models.Model):
 
 # Playlist model
 class Playlist(models.Model):
-    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
+    playlist = models.ForeignKey(Playlists, on_delete=models.CASCADE)
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
     datetime = models.DateTimeField(auto_now=True)
 
